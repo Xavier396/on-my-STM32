@@ -32,7 +32,7 @@ void keyinter_config() //配置中断控制器
 }
 void EXTI2_IRQHandler(void)
 {
-	if(EXTI_GetITStatus(EXTI_Line2)=)//等于啥不知道！
+	if(EXTI_GetITStatus(EXTI_Line2)==0)//等于啥不知道！
 	{
 	
 	}
