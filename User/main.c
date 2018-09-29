@@ -1,6 +1,7 @@
 #include "led.h"
 #include "key.h"
 #include "delay.h"
+#include "keyinterrupt.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -18,13 +19,16 @@ int yhj(void)
 	SystemInit();//获得72M的时种
 	led_Init(); //初始化io
 	delay_init();//1ms中断一次
+	key_intrerr();
+	keyinter_config() ;
+	GPIO_init();
 	//key_Init(); //初始化输入端
 	
 
 	//GPIO_SetBits(GPIOE,P0|P2|P5);
 	while (1)
 	{
-		GPIO_SetBits(E,P0);
+		/*GPIO_SetBits(E,P0);
 		transVal(100);
 		GPIO_ResetBits(E,P0);
 		transVal(100);
@@ -55,7 +59,7 @@ int yhj(void)
 		GPIO_SetBits(E,P7);
 		transVal(100);
 		GPIO_ResetBits(E,P7);
-		transVal(100);
+		transVal(100);*/
 		
 		
 		}

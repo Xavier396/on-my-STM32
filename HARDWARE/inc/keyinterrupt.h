@@ -8,5 +8,6 @@
 void GPIO_init(void);
 void key_intrerr(void);
 void keyinter_config(void);
+void safe_delay(int time);
 
 #endif

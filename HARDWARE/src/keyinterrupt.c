@@ -1,4 +1,5 @@
 #include "keyinterrupt.h"
+int i=0;
 void GPIO_init()
 {
 	
@@ -30,14 +31,72 @@ void keyinter_config() //配置中断控制器
 	keyconfig.NVIC_IRQChannelSubPriority=0;//从优先级0
 	NVIC_Init(&keyconfig);
 }
-void EXTI2_IRQHandler(void)
+
+//非中断式延时，不准确
+void safe_delay(int time)
 {
-	if(EXTI_GetITStatus(EXTI_Line2)==0)//等于啥不知道！
-	{
-	
-	}
-	if(GPIO_ReadInputData(GPIOC)==0)
-	{
-		//点亮一盏灯
-	}
+	int temp;
+	for(temp=0;temp<time;temp++);
 }
+void walkk()//跑马灯函数
+{
+	
+	while(1){
+		GPIO_SetBits(GPIOE,GPIO_Pin_0);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_0);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_1);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_1);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_2);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_2);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_3);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_3);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_4);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_4);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_5);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_5);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_6);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_6);
+		safe_delay(1800000);
+		GPIO_SetBits(GPIOE,GPIO_Pin_7);
+		safe_delay(1800000);
+		GPIO_ResetBits(GPIOE,GPIO_Pin_7);
+		safe_delay(1800000);
+}
+}
+
+void EXTI2_IRQHandler(void)//中断处理函数
+{
+	
+	if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_2)==0)
+	{
+		safe_delay(180000);
+		i++;
+		if(i%2!=0)
+		{
+			
+			walkk();
+			
+			
+		}
+		else if(i%2==0)
+		{
+			while(i%2==0);
+		}
+		EXTI_ClearITPendingBit(EXTI_Line2);
+	}
+	
+}
+

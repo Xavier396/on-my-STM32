@@ -31,3 +31,4 @@
 .\objects\main.o: ..\Lib\inc\misc.h
 .\objects\main.o: ..\HARDWARE\inc\key.h
 .\objects\main.o: ..\HARDWARE\inc\delay.h
+.\objects\main.o: ..\HARDWARE\inc\keyinterrupt.h
