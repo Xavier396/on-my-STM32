@@ -1,5 +1,6 @@
 #include "keyinterrupt.h"
-int i=0;
+int i=0; 
+int FLAG;
 void GPIO_init()
 {
 	
@@ -28,7 +29,7 @@ void keyinter_config() //配置中断控制器
 	keyconfig.NVIC_IRQChannel=EXTI2_IRQn;//中断线
 	keyconfig.NVIC_IRQChannelCmd=ENABLE;
 	keyconfig.NVIC_IRQChannelPreemptionPriority=0;//先占优先级0
-	keyconfig.NVIC_IRQChannelSubPriority=0;//从优先级0
+	keyconfig.NVIC_IRQChannelSubPriority=1;//从优先级1
 	NVIC_Init(&keyconfig);
 }
 
@@ -38,10 +39,10 @@ void safe_delay(int time)
 	int temp;
 	for(temp=0;temp<time;temp++);
 }
-void walkk()//跑马灯函数
+
+void walkk(void)//跑马灯函数
 {
 	
-	while(1){
 		GPIO_SetBits(GPIOE,GPIO_Pin_0);
 		safe_delay(1800000);
 		GPIO_ResetBits(GPIOE,GPIO_Pin_0);
@@ -74,7 +75,7 @@ void walkk()//跑马灯函数
 		safe_delay(1800000);
 		GPIO_ResetBits(GPIOE,GPIO_Pin_7);
 		safe_delay(1800000);
-}
+
 }
 
 void EXTI2_IRQHandler(void)//中断处理函数
@@ -82,21 +83,23 @@ void EXTI2_IRQHandler(void)//中断处理函数
 	
 	if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_2)==0)
 	{
-		safe_delay(180000);
-		i++;
-		if(i%2!=0)
-		{
+		safe_delay(1800000);
+	   if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_2)==0)
+		 {
+			i++;
+			if(i%2!=0)
+			{
+				FLAG=1;
+				//walkk();
+			}
+			else if(i%2==0)
+			{
+				FLAG=2;
+			}
 			
-			walkk();
-			
-			
-		}
-		else if(i%2==0)
-		{
-			while(i%2==0);
-		}
-		EXTI_ClearITPendingBit(EXTI_Line2);
 	}
+		 EXTI_ClearITPendingBit(EXTI_Line2);
+}
 	
 }
 
