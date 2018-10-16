@@ -556,6 +556,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\src\keyinterrupt.c</FilePath>
             </File>
+            <File>
+              <FileName>tiktok.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\src\tiktok.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

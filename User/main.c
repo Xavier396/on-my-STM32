@@ -2,6 +2,7 @@
 #include "key.h"
 #include "delay.h"
 #include "keyinterrupt.h"
+#include "tiktok.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -13,9 +14,9 @@
 #define All GPIO_Pin_All
 #define E GPIOE
 
-#define yhj main
+
 void delay(int time);
-int yhj(void)
+int main(void)
 {
 	SystemInit();//获得72M的时种
 	led_Init(); //初始化io
@@ -23,6 +24,7 @@ int yhj(void)
 	key_intrerr();
 	keyinter_config();
 	GPIO_init();
+	timeinit();
 	
 	//key_Init(); //初始化输入端
 	
@@ -30,14 +32,7 @@ int yhj(void)
 	//GPIO_SetBits(GPIOE,P0|P2|P5);
 	while (1)
 	{
-		if(FLAG==1)
-		{
-			walkk();
-		}
-		if(FLAG==2)
-		{
-		GPIO_ResetBits(E,All);
-		}
+		
 	}
 }
 void delay(int time)
