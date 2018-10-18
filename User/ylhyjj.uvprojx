@@ -561,6 +561,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\src\tiktok.c</FilePath>
             </File>
+            <File>
+              <FileName>PWM.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\src\PWM.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>
