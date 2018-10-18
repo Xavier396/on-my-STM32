@@ -1,5 +1,4 @@
 #include "tiktok.h"
-int j;
 void timeinit(void)
 {
 	
@@ -14,8 +13,8 @@ void timeinit(void)
   
 	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM4,ENABLE);//使能RCC
   TIM_TimeBaseInitTypeDef myTim; 
-  myTim.TIM_Period =9999;           //分频系数
-  myTim.TIM_Prescaler = 719;       
+  myTim.TIM_Period =8-1;           //分频系数
+  myTim.TIM_Prescaler = 9-1;       
   myTim.TIM_ClockDivision = TIM_CKD_DIV1; 
   myTim.TIM_CounterMode = TIM_CounterMode_Up;
   TIM_TimeBaseInit(TIM4,&myTim); 
@@ -24,21 +23,22 @@ void timeinit(void)
 	TIM_Cmd(TIM4, ENABLE);                      //使能外设
 	
 }
+void delay_ms(int time)
+{
+	j=time*1000;
+	while(j!=0);
+}
+void delay_us(int time)
+{
+	j=time;
+	while(j!=0);
+}
 
 
 
  void TIM4_IRQHandler(void)
  {
-	 if(TIM_GetITStatus(TIM4,TIM_IT_Update)!=0) 
-	 {
-	    j++;
-		 if(j%2==1)
-			GPIO_SetBits(GPIOE, GPIO_Pin_0); 
-		 if(j%2==0)
-			GPIO_ResetBits(GPIOE, GPIO_Pin_0); 
-		 
-	 }
-	 
+	 j--;	 
 		 
 		TIM_ClearITPendingBit(TIM4,TIM_IT_Update); //清中断
  }

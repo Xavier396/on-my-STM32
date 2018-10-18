@@ -15,7 +15,10 @@
 #define E GPIOE
 
 
-void delay(int time);
+void delay_us(int time);
+void delay_ms(int time);
+int j;
+int k;
 int main(void)
 {
 	SystemInit();//获得72M的时种
@@ -32,15 +35,12 @@ int main(void)
 	//GPIO_SetBits(GPIOE,P0|P2|P5);
 	while (1)
 	{
+		delay_us(500000);
+		GPIO_SetBits(E,P3);
+		delay_us(500000);
+		GPIO_ResetBits(E,P3);
 		
 	}
 }
-void delay(int time)
-{
-	int x;
-	for (x = 0; x < time; x++)
-	{
-		x = x + 0;
-	}
-}
+
 
