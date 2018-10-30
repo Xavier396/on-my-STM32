@@ -3,6 +3,7 @@
 #include "delay.h"
 #include "keyinterrupt.h"
 #include "tiktok.h"
+#include "stdlib.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -35,11 +36,24 @@ int main(void)
 	//GPIO_SetBits(GPIOE,P0|P2|P5);
 	while (1)
 	{
-		delay_us(500000);
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P0);
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P1);
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P2);
+		delay_ms(rand()%10000+10);
 		GPIO_SetBits(E,P3);
-		delay_us(500000);
-		GPIO_ResetBits(E,P3);
-		
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P4);
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P5);
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P6);
+		delay_ms(rand()%10000+10);
+		GPIO_SetBits(E,P7);
+		delay_ms(rand()%10000+10);
+		GPIO_ResetBits(E,All);
 	}
 }
 
