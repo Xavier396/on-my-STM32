@@ -4,6 +4,7 @@
 #include "keyinterrupt.h"
 #include "tiktok.h"
 #include "stdlib.h"
+#include "PWM.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -22,13 +23,15 @@ int j;
 int k;
 int main(void)
 {
-	SystemInit();//获得72M的时种
+	int temp ;
+	//SystemInit();//获得72M的时种
 	led_Init(); //初始化io
-	delay_init();//1ms中断一次
+	//delay_init();//1ms中断一次
 	key_intrerr();
 	keyinter_config();
 	GPIO_init();
 	timeinit();
+	pwm_init();
 	
 	//key_Init(); //初始化输入端
 	
@@ -36,24 +39,22 @@ int main(void)
 	//GPIO_SetBits(GPIOE,P0|P2|P5);
 	while (1)
 	{
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P0);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P1);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P2);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P3);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P4);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P5);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P6);
-		delay_ms(rand()%10000+10);
-		GPIO_SetBits(E,P7);
-		delay_ms(rand()%10000+10);
-		GPIO_ResetBits(E,All);
+		
+		for(temp=0;temp<10000;temp=temp+50)
+		{
+			
+			TIM_SetCompare2(TIM3,temp);	
+			delay_ms(20);
+			
+		}
+		for(temp=10000;temp>0;temp=temp-50)
+		{
+			
+			TIM_SetCompare2(TIM3,temp);	
+			delay_ms(20);
+			
+		}
+		
 	}
 }
 
