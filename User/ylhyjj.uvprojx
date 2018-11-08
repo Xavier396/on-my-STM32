@@ -566,6 +566,11 @@
               <FileType>1</FileType>
               <FilePath>..\HARDWARE\src\PWM.c</FilePath>
             </File>
+            <File>
+              <FileName>motor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\HARDWARE\src\motor.c</FilePath>
+            </File>
           </Files>
         </Group>
       </Groups>

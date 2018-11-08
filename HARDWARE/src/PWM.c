@@ -20,32 +20,32 @@
 	TIM_OC2Init(TIM3,&myOc);
 	
 	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);//使能RCC
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
   TIM_TimeBaseInitTypeDef myPWM; 
-  myPWM.TIM_Period =9999;           //计数值，也就是ARR
-  myPWM.TIM_Prescaler = 144;       //分频系数,f=72000000/(ARR*分频系数)
+  myPWM.TIM_Period =9999;           
+  myPWM.TIM_Prescaler = 144;       
   myPWM.TIM_ClockDivision = TIM_CKD_DIV1; 
   myPWM.TIM_CounterMode = TIM_CounterMode_Up;
   TIM_TimeBaseInit(TIM3,&myPWM); 
 	
 	
-	TIM_Cmd(TIM3, ENABLE);                      //使能外设
+	TIM_Cmd(TIM3, ENABLE);                      
 
 }*/
 void pwm_init(void)
 {
-	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);//?a??RCCê±?
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA,ENABLE);//启用A脚的RCC
 	GPIO_InitTypeDef GPIO_InitStructure;
 
-	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF_PP;//í?íìê?3?
-	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_7;//ê1?üòy??
-	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;//òy???ù?è
-	GPIO_Init(GPIOA,&GPIO_InitStructure);//ê1?üIO
+	GPIO_InitStructure.GPIO_Mode=GPIO_Mode_AF_PP;//输出
+	GPIO_InitStructure.GPIO_Pin=GPIO_Pin_7;//初始化P7
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;//设定时钟速度
+	GPIO_Init(GPIOA,&GPIO_InitStructure);//初始化完成
 	
-	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_TIM3,ENABLE);//使能RCC
 	TIM_TimeBaseInitTypeDef TIM_TimeBaseStructure;
-	TIM_TimeBaseStructure.TIM_Period=9999;
-	TIM_TimeBaseStructure.TIM_Prescaler=144;
+	TIM_TimeBaseStructure.TIM_Period=9999;//计数值，也就是ARR
+	TIM_TimeBaseStructure.TIM_Prescaler=144;//分频系数,f=72000000/(ARR*分频系数)
 	TIM_TimeBaseStructure.TIM_ClockDivision=TIM_CKD_DIV1;
 	TIM_TimeBaseStructure.TIM_CounterMode=TIM_CounterMode_Up;
 	TIM_TimeBaseInit(TIM3,&TIM_TimeBaseStructure);
@@ -57,6 +57,6 @@ void pwm_init(void)
 	TIM_OCInitStructure.TIM_Pulse=5000;
 	TIM_OCInitStructure.TIM_OCPolarity=TIM_OCPolarity_Low;
 	TIM_OC2Init(TIM3,&TIM_OCInitStructure);
-	TIM_Cmd(TIM3,ENABLE);
+	TIM_Cmd(TIM3,ENABLE);//使能外设
 }
 
