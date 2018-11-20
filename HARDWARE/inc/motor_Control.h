@@ -1,15 +1,10 @@
-#ifndef _LED_H_
+#ifndef _MOTOR_CONTROL_H_
+#define _MOTOR_CONTROL_H_
 
-#define _LED_H_
 #include "stm32f10x.h"//it's lib function
 #include "stm32f10x_gpio.h"//it's io
 #include "stm32f10x_rcc.h"//it's clock
-void led_Init(void);
-void speak_init(void);
-
-
-
-
+#include "tiktok.h"//ÑÓÊ±º¯Êý
 
 
 

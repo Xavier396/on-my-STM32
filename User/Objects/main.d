@@ -36,3 +36,4 @@
 .\objects\main.o: D:\Keil_v5\ARM\ARM\ARMCC\Bin\..\include\stdlib.h
 .\objects\main.o: ..\HARDWARE\inc\PWM.h
 .\objects\main.o: ..\HARDWARE\inc\motor.h
+.\objects\main.o: ..\HARDWARE\inc\motor_Control.h

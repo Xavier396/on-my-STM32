@@ -6,6 +6,7 @@
 #include "stdlib.h"
 #include "PWM.h"
 #include "motor.h"
+#include "motor_Control.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -29,33 +30,26 @@ int main(void)
 {
 	
 	SystemInit();//获得72M的时种
-	//led_Init(); //初始化io
+	led_Init(); //初始化io
 	//delay_init();//1ms中断一次
-	//key_intrerr();
-	//keyinter_config();
+	speak_init();
 	motor_Init();
 	GPIO_init();
+	key_intrerr();
+	keyinter_config();
+
 	timeinit();//延时初始化
 	pwm_init();//pwm
+	//PORT_init();
+	//keys_intrerr();
+	//keyinters_config();
 	
 	//key_Init(); //初始化输入端
 	
-
-	//GPIO_SetBits(GPIOE,P0|P2|P5);
+	TIM_SetCompare2(TIM3,1);//1/10000小于10%，所以默认停转
+	
 	while (1)
 	{
-		TIM_SetCompare2(TIM3,10000);
-		GPIO_SetBits(GPIOB,GPIO_Pin_6);
-		delay_ms(5000);
-		GPIO_ResetBits(GPIOB,GPIO_Pin_6);
-		delay_ms(2000);
-		//breath();
-		stop(5000);
-		
-		/*stop();
-		delay_ms(5000);*/
-		
-		
 		
 	}
 }
@@ -77,16 +71,7 @@ void breath()//呼吸灯
 			
 		}
 	}
-		void stop(int x)
-		{
-			int temp ;
-	for(temp=10;temp>0;temp--)
-		{
-			
-			TIM_SetCompare2(TIM3,temp);	
-			delay_ms(x/10);
-			
-		}
+		
 		/*for(temp=10000;temp>0;temp=temp-50)
 		{
 			
@@ -94,8 +79,6 @@ void breath()//呼吸灯
 			delay_ms(10);
 			
 		}*/
-				
-			}
 
 
 
