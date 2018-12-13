@@ -1,4 +1,5 @@
 #include "keyinterrupt.h"
+#include "tiktok.h"
 int i=0;
 void GPIO_init()
 {
@@ -152,7 +153,7 @@ if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_1)==0)
 			{
 				//TODO:在这里添加代码以控制电机
 				TIM_SetCompare2(TIM3,8000);
-		GPIO_ResetBits(GPIOB,GPIO_Pin_6);
+		GPIO_SetBits(GPIOB,GPIO_Pin_6);
 		}
 		EXTI_ClearITPendingBit(EXTI_Line1);
 	}
@@ -165,11 +166,30 @@ if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_0)==0)
 		if(GPIO_ReadOutputDataBit(GPIOC,GPIO_Pin_0)==0)
 			{
 				//TODO:在这里添加代码以控制电机
-				TIM_SetCompare2(TIM3,8000);
-		GPIO_SetBits(GPIOB,GPIO_Pin_6);
+				int i=200;
+				GPIO_ResetBits(GPIOC,GPIO_Pin_4);
+				while(1)
+		{
+			
+			TIM_SetCompare2(TIM3,i);
+				i+=70;
+			delay_us(10);
+			
+		}
 		}
 		EXTI_ClearITPendingBit(EXTI_Line0);
 	}
 }
+void breath_mat()//呼吸灯
+{
+	int temp ;
+	for(temp=250;temp<10000;temp=temp+50)
+		{
+			
+			TIM_SetCompare2(TIM3,temp);	
+			delay_ms(10);
+			
+		}
+	}
 
 

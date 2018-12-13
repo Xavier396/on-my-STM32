@@ -16,6 +16,7 @@ void walkk(void);
 void EXTI1_IRQHandler(void);
 void EXTI2_IRQHandler(void);
 void EXTI3_IRQHandler(void);
+void breath_mat(void);
 
 
 #endif

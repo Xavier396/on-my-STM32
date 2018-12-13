@@ -29,3 +29,4 @@
 .\objects\keyinterrupt.o: ..\Lib\inc\stm32f10x_usart.h
 .\objects\keyinterrupt.o: ..\Lib\inc\stm32f10x_wwdg.h
 .\objects\keyinterrupt.o: ..\Lib\inc\misc.h
+.\objects\keyinterrupt.o: ..\HARDWARE\inc\tiktok.h

@@ -6,7 +6,8 @@
 #include "stdlib.h"
 #include "PWM.h"
 #include "motor.h"
-#include "motor_Control.h"
+#include "USART.h"
+#include "stdio.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -28,30 +29,39 @@ void breath(void);
 
 int main(void)
 {
-	
-	SystemInit();//获得72M的时种
-	led_Init(); //初始化io
+	//int i;
+	//SystemInit();//获得72M的时种
+	//led_Init(); //初始化io
 	//delay_init();//1ms中断一次
-	speak_init();
-	motor_Init();
-	GPIO_init();
-	key_intrerr();
-	keyinter_config();
+	//speak_init();
+	//motor_Init();
+	//GPIO_init();
+	//key_intrerr();
+	//keyinter_config();
 
-	timeinit();//延时初始化
-	pwm_init();//pwm
-	//PORT_init();
-	//keys_intrerr();
-	//keyinters_config();
-	
+	//timeinit();//延时初始化
+	//pwm_init();//pwm
+	usart_Init();
+	 //hc_sr04_init();
 	//key_Init(); //初始化输入端
 	
-	TIM_SetCompare2(TIM3,1);//1/10000小于10%，所以默认停转
-	
+	//TIM_SetCompare2(TIM3,1);//1/10000小于10%，所以默认停转
+	//GPIO_SetBits(GPIOC,GPIO_Pin_4);
+	printf("初始化成功\n");
 	while (1)
 	{
-		
-	}
+		/*if(USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==1)
+		{
+			i++;
+			i=USART_ReceiveData(USART1);
+			USART_SendData(USART1,i);
+			while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==0)*/
+		float srlength=0;
+		srlength=getlength();
+		printf("距离是：%fCM\n",srlength);
+		delay_us(15);
+		}
+	
 }
 void breath()//呼吸灯
 {
