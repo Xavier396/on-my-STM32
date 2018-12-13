@@ -2,6 +2,12 @@
 #include "key.h"
 #include "delay.h"
 #include "keyinterrupt.h"
+#include "tiktok.h"
+#include "stdlib.h"
+#include "PWM.h"
+#include "motor.h"
+#include "USART.h"
+#include "stdio.h"
 #define P0 GPIO_Pin_0
 #define P1 GPIO_Pin_1
 #define P2 GPIO_Pin_2
@@ -13,39 +19,77 @@
 #define All GPIO_Pin_All
 #define E GPIOE
 
-#define yhj main
-void delay(int time);
-int yhj(void)
+
+//void delay_us(int time);
+//void delay_ms(int time);
+int j;
+int k;
+void stop(int x);
+void breath(void);
+
+int main(void)
 {
-	SystemInit();//获得72M的时种
-	led_Init(); //初始化io
-	delay_init();//1ms中断一次
-	key_intrerr();
-	keyinter_config();
-	GPIO_init();
-	
+	//int i;
+	//SystemInit();//获得72M的时种
+	//led_Init(); //初始化io
+	//delay_init();//1ms中断一次
+	//speak_init();
+	//motor_Init();
+	//GPIO_init();
+	//key_intrerr();
+	//keyinter_config();
+
+	//timeinit();//延时初始化
+	//pwm_init();//pwm
+	usart_Init();
+	 hc_sr04_init();
 	//key_Init(); //初始化输入端
 	
-
-	//GPIO_SetBits(GPIOE,P0|P2|P5);
+	//TIM_SetCompare2(TIM3,1);//1/10000小于10%，所以默认停转
+	//GPIO_SetBits(GPIOC,GPIO_Pin_4);
+	printf("初始化成功\n");
 	while (1)
 	{
-		if(FLAG==1)
+		/*if(USART_GetFlagStatus(USART1,USART_FLAG_RXNE)==1)
 		{
-			walkk();
+			i++;
+			i=USART_ReceiveData(USART1);
+			USART_SendData(USART1,i);
+			while(USART_GetFlagStatus(USART1,USART_FLAG_TXE)==0)*/
+		float srlength=0;
+		srlength=getlength();
+		printf("距离是：%fCM\n",srlength);
+		delay_us(15);
 		}
-		if(FLAG==2)
-		{
-		GPIO_ResetBits(E,All);
-		}
-	}
+	
 }
-void delay(int time)
+void breath()//呼吸灯
 {
-	int x;
-	for (x = 0; x < time; x++)
-	{
-		x = x + 0;
+	int temp ;
+	for(temp=0;temp<10000;temp=temp+50)
+		{
+			
+			TIM_SetCompare2(TIM3,temp);	
+			delay_ms(10);
+			
+		}
+		for(temp=10000;temp>0;temp=temp-50)
+		{
+			
+			TIM_SetCompare2(TIM3,temp);	
+			delay_ms(10);
+			
+		}
 	}
-}
+		
+		/*for(temp=10000;temp>0;temp=temp-50)
+		{
+			
+			TIM_SetCompare2(TIM3,temp);	
+			delay_ms(10);
+			
+		}*/
+
+
+
 

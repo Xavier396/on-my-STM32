@@ -33,3 +33,8 @@
 .\objects\main.o: ..\HARDWARE\inc\delay.h
 .\objects\main.o: ..\HARDWARE\inc\keyinterrupt.h
 .\objects\main.o: ..\HARDWARE\inc\tiktok.h
+.\objects\main.o: D:\Keil_v5\ARM\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\main.o: ..\HARDWARE\inc\PWM.h
+.\objects\main.o: ..\HARDWARE\inc\motor.h
+.\objects\main.o: ..\HARDWARE\inc\USART.h
+.\objects\main.o: D:\Keil_v5\ARM\ARM\ARMCC\Bin\..\include\stdio.h

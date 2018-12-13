@@ -5,6 +5,7 @@
 #include "stm32f10x_gpio.h"//it's io
 #include "stm32f10x_rcc.h"//it's clock
 void led_Init(void);
+void speak_init(void);
 
 
 
