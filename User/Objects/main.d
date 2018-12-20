@@ -38,3 +38,4 @@
 .\objects\main.o: ..\HARDWARE\inc\motor.h
 .\objects\main.o: ..\HARDWARE\inc\USART.h
 .\objects\main.o: D:\Keil_v5\ARM\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\main.o: ..\HARDWARE\inc\AD.h
